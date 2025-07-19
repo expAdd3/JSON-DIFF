@@ -1,3 +1,4 @@
+![img.png](images/img.png)
 # 环境安装指南
 ## NVM 安装
 ``` 
