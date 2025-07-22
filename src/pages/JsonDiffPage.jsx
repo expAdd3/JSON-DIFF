@@ -19,6 +19,7 @@ import jsPDF from 'jspdf';
 import { Label } from '@/components/ui/label';
 import { Switch } from '@/components/ui/switch';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
+import { HelpCircle } from "lucide-react"
 import { toast } from 'sonner';
 
 const JsonDiffPage = () => {
@@ -729,7 +730,26 @@ const JsonDiffPage = () => {
                   onCheckedChange={(checked) => updateIgnoreOption('ignoreDynamicValues', checked)}
                 />
                 <Label htmlFor="dynamic-values">忽略动态值</Label>
-                <p className="text-xs text-gray-500 ml-2">(时间戳、UUID等)</p>
+                {/*<p className="text-xs text-gray-500 ml-2">(时间戳、UUID等)</p>*/}
+                {/*说明文字信息*/}
+                <Popover>
+                  <PopoverTrigger asChild>
+                    <button
+                        type="button"
+                        className="text-gray-500 hover:text-gray-700"
+                        aria-label="说明"
+                    >
+                      <HelpCircle className="w-4 h-4" />
+                    </button>
+                  </PopoverTrigger>
+                  <PopoverContent className="w-100 text-sm text-gray-700">
+                    <strong className="block text-center text-xl">注意事项</strong>
+                    <p>启用后，比较时将自动忽略时间戳、UUID 等动态字段。</p>
+                    <strong>目前被过滤字段：</strong>
+                    <p> - 时间字符串（YYYY-MM-DDTHH:mm:ss 开头）</p>
+                    <p> - UUID 字符串（符合标准 UUID 正则）</p>
+                  </PopoverContent>
+                </Popover>
               </div>
               
               <div>
