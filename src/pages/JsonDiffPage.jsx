@@ -501,13 +501,13 @@ const JsonDiffPage = () => {
 
   return (
     <div className="container mx-auto p-4">
-      <h1 className="text-3xl font-bold mb-6">JSON 差异比较工具</h1>
+      <h1 className="text-5xl font-bold mb-6">JSON DIFF v1.0</h1>
       
       {error && (
         <Alert variant="destructive" className="mb-4 relative">
           <div className="absolute top-3 right-3">
             <Button 
-              variant="ghost" 
+              variant="ghost"
               size="icon" 
               onClick={() => setError('')}
               className="text-white opacity-100"
@@ -557,7 +557,9 @@ const JsonDiffPage = () => {
             </div>
           </div>
           <div className="mt-4 text-sm text-gray-500">
-            <p>提示：使用公共API时可能需要代理服务解决跨域问题</p>
+            <p>提示:</p>
+            <p> - 使用公共 API 时可能需要代理服务解决跨域问题</p>
+            <p> - v1.0 仅支持返回值为纯 JSON 的请求</p>
           </div>
         </CardContent>
       </Card>
@@ -757,7 +759,7 @@ const JsonDiffPage = () => {
       </Card>
       
       <div className="flex gap-4 mb-6">
-        <Button onClick={compareJson}>比较差异</Button>
+        <Button onClick={compareJson}>Diff</Button>
         <Button variant="outline" onClick={clearAll}>清空所有</Button>
         <Button 
           onClick={generatePDFReport}
