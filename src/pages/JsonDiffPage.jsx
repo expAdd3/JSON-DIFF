@@ -21,7 +21,8 @@ import { Switch } from '@/components/ui/switch';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { HelpCircle } from "lucide-react"
 import { toast } from 'sonner';
-
+import log from "eslint-plugin-react/lib/util/log.js";
+import '../font/SimSun-normal';
 const JsonDiffPage = () => {
   const [leftJson, setLeftJson] = useState('');
   const [rightJson, setRightJson] = useState('');
@@ -409,6 +410,7 @@ const JsonDiffPage = () => {
   };
 
   const generatePDFReport = async () => {
+    console.log('开始生成PDF报告...')
     if (!diffRef.current || diffResult.length === 0) {
       setError('没有差异结果可生成报告');
       return;
@@ -427,7 +429,7 @@ const JsonDiffPage = () => {
       const imgWidth = 190;
       const imgHeight = (diffRef.current.scrollHeight / diffRef.current.scrollWidth) * imgWidth;
       
-      pdf.setFont('helvetica');
+      pdf.setFont('SimSun');
       
       pdf.setFontSize(18);
       pdf.text('JSON差异检测报告', 105, 15, null, null, 'center');
