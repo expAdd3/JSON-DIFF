@@ -415,7 +415,7 @@ const JsonDiffPage = () => {
 
     try {
       const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(url)}`;
-      const response = await axios.get(proxyUrl, { timeout: 10000 });
+      const response = await axios.get(proxyUrl, { timeout: 15000 });
 
       if (response.data && response.data.contents) {
         const jsonData = JSON.parse(response.data.contents);
@@ -442,7 +442,9 @@ const JsonDiffPage = () => {
           }
         }
       } else if (err.request) {
-        errorMessage += ' (无响应)';
+        // 请求已发出但没有收到响应，可能是超时
+        statusCode = 408; // 使用408表示请求超时
+        errorMessage += ' (无响应，请求超时)';
       }
 
       // 记录失败的请求
@@ -848,7 +850,7 @@ const JsonDiffPage = () => {
                               >
                                 <span className="truncate">{item.url}</span>
                                 <span className={`ml-2 px-2 py-1 rounded text-xs font-medium ${getStatusColorClass(item.statusCode)}`}>
-                            {item.statusCode}
+                            {item.statusCode === 408 ? '超时' : item.statusCode}
                           </span>
                               </div>
                           ))}
@@ -951,7 +953,7 @@ const JsonDiffPage = () => {
                               >
                                 <span className="truncate">{item.url}</span>
                                 <span className={`ml-2 px-2 py-1 rounded text-xs font-medium ${getStatusColorClass(item.statusCode)}`}>
-                            {item.statusCode}
+                            {item.statusCode === 408 ? '超时' : item.statusCode}
                           </span>
                               </div>
                           ))}
